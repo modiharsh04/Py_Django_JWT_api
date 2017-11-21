@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ValidationError
 from rest_framework_jwt.views import obtain_jwt_token
 import json
+
+from backnd.models import Blog
 from backnd.validators import validate_password, validate_email
 from backnd.utils import get_token_data, create_login_token
 
@@ -66,3 +68,12 @@ def delete_account(request):
     return JsonResponse({
         'status': 'success'
     })
+
+@csrf_exempt
+def blogs(request):
+	blgs = Blog.objects.all()
+	lst = []
+	for blg in blgs:
+		lst.append(blg.get_json())
+	data = {'blogs': lst}
+	return JsonResponse(data)

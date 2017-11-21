@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^verify$', verify_jwt_token, name='verify'),
     url(r'^delete$', views.delete_account, name='delete'),
     url(r'^refresh$', refresh_jwt_token),
+    url(r'^blogs',views.blogs, name="blogs")
 ]
