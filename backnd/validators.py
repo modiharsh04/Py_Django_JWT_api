@@ -2,7 +2,6 @@ from django.core.exceptions import ValidationError
 import re
 
 def validate_password(password):
-    print('validating passowrd', password)
     if len(password) < 8:
         print('pass is short')
         raise ValidationError('Password should be longer than 8 chars')

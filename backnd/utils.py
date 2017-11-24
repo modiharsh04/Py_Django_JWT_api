@@ -20,3 +20,12 @@ def get_token_data(request):
     token = get_token(request)
     token = jwt.decode(token, settings.SECRET_KEY)
     return token
+
+def get_user(usr):
+    d = {
+        'first_name': usr.first_name,
+        'last_name': usr.last_name,
+        'username' : usr.get_username(),
+        'email': usr.email
+    }
+    return d
