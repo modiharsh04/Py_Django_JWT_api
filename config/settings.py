@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +54,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),
+    'JWT_ALLOW_REFRESH': True
 }
 
 MIDDLEWARE = [
