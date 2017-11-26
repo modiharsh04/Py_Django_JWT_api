@@ -16,7 +16,8 @@ auth_urls = [
 
 blog_urls = [
 	url(r'^blogs',views.blogs, name="blogs"),
-	url(r'^user',views.user, name="user")
+	url(r'^user',views.user, name="user"),
+	url(r'^(?P<username>[a-z0-9.]+)/$',views.author, name="author")
 ]
 
 urlpatterns = auth_urls + blog_urls

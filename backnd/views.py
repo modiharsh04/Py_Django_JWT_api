@@ -82,7 +82,7 @@ def blogs(request):
 			'status' : 'fail - Wrong Method call'
 			})
 
-	blgs = Blog.objects.all()
+	blgs = Blog.objects.order_by('last_modified')[:10]
 	lst = []
 	for blg in blgs:
 		lst.append(blg.get_json())
@@ -99,6 +99,26 @@ def user(request):
 
 	user = get_token_data(request)
 	u = User.objects.get(username = user.get('username'))
+	if u:
+		return JsonResponse({
+			'status' : 'success',
+			'data' : get_user(u)
+			})
+	else:
+		return JsonResponse({
+			'status' : 'fail',
+			'data' : 'Could not find user'
+			})
+
+@csrf_exempt
+def author(request,username):
+	if request.method != 'GET':
+		return JsonResponse({
+			'status' : 'fail',
+			'data' : 'Wrong Method Call'
+			})
+
+	u = User.objects.get(username = username)
 	if u:
 		return JsonResponse({
 			'status' : 'success',

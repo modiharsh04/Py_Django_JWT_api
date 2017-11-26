@@ -20,16 +20,14 @@ class Blog(models.Model):
 
 	def get_author(self,usr):
 		d = {
-			'first_name': usr.first_name,
-			'last_name': usr.last_name,
-			'username' : usr.get_username(),
-			'email': usr.email
+			'username' : usr.get_username()
 		}
 		return d
 
 	def get_json(self):
 		time_frmt = '%c'
 		d = {
+			'id': self.pk,
 			'content': self.content,
 			'subject': self.subject,
 			'created': self.created.strftime(time_frmt),
