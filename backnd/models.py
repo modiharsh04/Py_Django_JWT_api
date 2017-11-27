@@ -11,8 +11,7 @@ class Blog(models.Model):
 	last_modified = models.DateTimeField(auto_now = True)
 	author = models.ForeignKey(
 			settings.AUTH_USER_MODEL,
-			on_delete=models.CASCADE,
-			default= 1
+			on_delete=models.CASCADE
 		)
 
 	def __str__(self):

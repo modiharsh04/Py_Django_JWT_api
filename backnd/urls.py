@@ -11,13 +11,14 @@ auth_urls = [
 	url(r'^login$', views.login, name='login'),
 	url(r'^verify$', verify_jwt_token),
 	url(r'^delete$', views.delete_account, name='delete'),
-	url(r'^refresh$', refresh_jwt_token)
+	url(r'^refresh$', refresh_jwt_token),
 ]
 
 blog_urls = [
 	url(r'^blogs',views.blogs, name="blogs"),
 	url(r'^user',views.user, name="user"),
-	url(r'^(?P<username>[a-z0-9.]+)/$',views.author, name="author")
+	url(r'^newPost',views.newPost, name="newPost"),
+	url(r'^(?P<username>[a-z0-9.]+)/$',views.author, name="author"),
 ]
 
 urlpatterns = auth_urls + blog_urls
